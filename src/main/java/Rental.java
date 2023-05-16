@@ -3,22 +3,22 @@ import java.util.Date;
 
 public class Rental {
     private int id;
-    private Movie Movie;
+    private Item item;
     private Customer customer;
     private Date rentalDate;
     private Date returnDate;
 
-    public Movie getMovie() {
-        return Movie;
+    public Item getItem() {
+        return item;
     }
 
-    public Rental(Movie Movie, Customer customer, int id){
+    public Rental(Item item, Customer customer, int id){
         this.customer=customer;
         this.id=id;
-        Movie.setAvailable(true);
+        item.setAvailable(true);
         Date now = new Date();
         rentalDate = now;
-        this.Movie=Movie;
+        this.item=item;
 
         rentalDate = new Date();
     }   //end of constructor

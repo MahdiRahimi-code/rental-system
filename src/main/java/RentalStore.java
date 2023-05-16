@@ -3,15 +3,15 @@ import java.util.Date;
 import java.util.List;
 
 public class RentalStore {
-    private List<Movie> Movies = new ArrayList<Movie>();                    //list of available Movies
+    private List<Item> items = new ArrayList<Item>();                    //list of available items
     private List<Customer> customers = new ArrayList<Customer>();            //list of registered customers
 
 
     public void register(Customer customer){
         customers.add(customer);
     }
-    public void addMovie(Movie Movie){
-        Movies.add(Movie);
+    public void addItem(Item item){
+        items.add(item);
     }
 
     public Customer getCustomerByID(int customerID) {
@@ -31,50 +31,50 @@ public class RentalStore {
 
         return customers.get(customerIndex);
     }
-    public Movie getMovieByID(int MovieID) {
+    public Item getItemByID(int itemID) {
 
-        int MovieIndex = -1;
-        for (int i=0;i<Movies.size();i++){
-            if (Movies.get(i).getId() == MovieID){
-                MovieIndex = i;
+        int itemIndex = -1;
+        for (int i=0;i<items.size();i++){
+            if (items.get(i).getId() == itemID){
+                itemIndex = i;
                 break;
             }
         }
 
-        if (MovieIndex == -1){
-            System.out.println("Wrong movie id !!!");
+        if (itemIndex == -1){
+            System.out.println("Wrong customer id !!!");
             return null;
         }
 
-        return Movies.get(MovieIndex);
+        return items.get(itemIndex);
     }
 
-    public void rentMovie(Customer customer, Movie Movie){
+    public void rentItem(Customer customer, Item item){
 
-        int id = Movie.getId();
+        int id = item.getId();
         int isFound = 0;
-        for (Movie i: Movies) {
-            if (i==Movie){
+        for (Item i: items) {
+            if (i==item){
                 isFound = 1;
                 break;
             }
         }
         if (isFound == 0){
-            System.out.println("Movie not in list!!!");
+            System.out.println("Item not in list!!!");
             return ;
         }
-        if (Movie.isAvailable() == false){
-            System.out.println("Movie is not available");
+        if (item.isAvailable() == false){
+            System.out.println("Item is not available");
         }
 
-        String rentID = String.valueOf(Movie.getId()) + String.valueOf(customer.getId());
+        String rentID = String.valueOf(item.getId()) + String.valueOf(customer.getId());
         int rentID2 = Integer.parseInt(rentID);
-        Rental x = new Rental(Movie ,customer , rentID2);
-        Movie.setAvailable(false);
+        Rental x = new Rental(item ,customer , rentID2);
+        item.setAvailable(false);
         customer.getRentals().add(x);
     }
 
-    public void returnMovie(Rental rental){
+    public void returnItem(Rental rental){
 
         int isFound = 0;
         Rental x;
@@ -86,27 +86,28 @@ public class RentalStore {
             }
         }
         if (isFound == 0){
-            System.out.println("Movie not rented!!!");
+            System.out.println("Item not rented!!!");
             return ;
         }
 
-        rental.getMovie().setAvailable(true);
+        rental.getItem().setAvailable(true);
         Date now = new Date();
         rental.setReturnDate(now);
         rental.getCustomer().getRentals().remove(rental);
     }
 
-    public void removeMovie(Movie movie){
-        Movies.remove(movie);
+    public void removeItem(Item item){
+        items.remove(item);
     }
 
-    public List<Movie> getAvailableMovies(){
-        List<Movie> availableMovies = new ArrayList<>();
-        for (Movie i : Movies){
+    public List<Item> getAvailableItems(){
+        List<Item> availableItems = new ArrayList<Item>();
+        for (Item i : items){
             if (i.isAvailable() == true){
-                availableMovies.add(i);
+                availableItems.add(i);
             }
         }
-        return availableMovies;
+        return availableItems;
     }
+
 }
