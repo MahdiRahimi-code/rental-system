@@ -2,11 +2,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Movie extends Item{
-    private List<String> cast = new ArrayList<String>();
+    private String cast;
     private String director;
 
-    public Movie(String title, String genre, String director, List<String> cast, String realeaseDate, int id){
-        super(title ,genre ,realeaseDate ,id);
+    public Movie(String title, String genre, String director, String cast, String releaseDate, int id){
+        super(title ,genre ,releaseDate ,id);
         this.director=director;
         this.cast=cast;
     }        //end of constructor
@@ -14,7 +14,7 @@ public class Movie extends Item{
     public String getDirector() {
         return director;
     }
-    public List<String> getCast() {
+    public String getCast() {
         return cast;
     }
     //end of getters

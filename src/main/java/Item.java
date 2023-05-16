@@ -5,7 +5,7 @@ public class Item {
     protected  String title;
     protected String genre;
     protected String releaseDate;
-    protected boolean Available;
+    protected boolean isAvailable;
     protected int id;
 
 
@@ -14,13 +14,13 @@ public class Item {
         this.genre=genre;
         this.title=title;
         this.releaseDate=releaseDate;
-        Available=true;
+        isAvailable=true;
 
     }
     //end of constuctor
 
     public void setAvailable(boolean available) {
-        this.Available = available;
+        this.isAvailable = available;
     }
     //end of setter
 
@@ -37,7 +37,7 @@ public class Item {
         return releaseDate;
     }
     public boolean isAvailable(){
-        return Available;
+        return isAvailable;
     }
     //end of getters
 
