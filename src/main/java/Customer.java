@@ -36,5 +36,9 @@ public class Customer {
     public String getPhone() {
         return phone;
     }
-    //end of getters
+
+    public void setRentals(List<Rental> rentals) {
+        this.rentals = rentals;
+    }
+//end of getters
 }

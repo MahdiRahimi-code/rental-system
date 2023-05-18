@@ -13,7 +13,8 @@ public class Rental {
     }
 
     public Rental(Item item, Customer customer, int id){
-        this.customer=customer;
+        this.customer=new Customer(customer.getId(), customer.getName(),
+                customer.getEmail(), customer.getPhone(), customer.getAddress());
         this.id=id;
         item.setAvailable(true);
         Date now = new Date();

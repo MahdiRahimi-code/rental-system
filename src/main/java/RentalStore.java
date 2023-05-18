@@ -6,7 +6,6 @@ public class RentalStore {
     private List<Item> items = new ArrayList<Item>();                    //list of available items
     private List<Customer> customers = new ArrayList<Customer>();            //list of registered customers
 
-
     public void register(Customer customer){
         customers.add(customer);
     }
@@ -71,6 +70,9 @@ public class RentalStore {
         int rentID2 = Integer.parseInt(rentID);
         Rental x = new Rental(item ,customer , rentID2);
         item.setAvailable(false);
+        if (customer.getRentals() == null){
+            customer.setRentals(new ArrayList<Rental>());
+        }
         customer.getRentals().add(x);
     }
 
